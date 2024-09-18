@@ -1,0 +1,38 @@
+﻿<src:AbstractWindow x:Class="STBViewer2_202.MainWindow.MainWindow_202"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:wf="clr-namespace:OpenTK.GLControl;assembly=OpenTK.GLControl"
+        xmlns:wfi="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+        xmlns:src="clr-namespace:STBViewer2Lib.MainWindow;assembly=STBViewer2Lib"
+        Title="ST-Bridge Viewer" Height="450" Width="800">
+
+    <DockPanel>
+        <!-- メニューバー（上部） -->
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_ファイル">
+                <MenuItem Header="ST-Bridgeの読み込み" Click="LoadSTBridgeA_Click"/>
+                <MenuItem Header="データのクリア" Click="ClearSTBridgeA_Click"/>
+                <MenuItem Header="比較ファイルの読み込み" Click="LoadSTBridgeB_Click" x:Name="MenuItem_LoadSTBridgeB" x:FieldModifier="public" IsEnabled="False"/>
+                <MenuItem Header="比較ファイルのクリア" Click="ClearSTBridgeB_Click" x:Name="MenuItem_ClearSTBridgeB" x:FieldModifier="public" IsEnabled="False"/>
+            </MenuItem>
+            <MenuItem Header="_設定">
+                <MenuItem Header="設定ウィンドウを開く" Click="OpenSettingsWindow_Click"/>
+            </MenuItem>
+            <MenuItem Header="_ヘルプ">
+                <MenuItem Header="バージョン" Click="ShowVersion_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <!-- Gridを配置するエリア -->
+        <Grid Name="MainGrid" x:FieldModifier="public">
+            <!-- 1列定義: 最初はST-BridgeAだけ -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- 左側のTreeViewとGLControlを配置するエリア -->
+            <Grid x:Name="LeftPanel" x:FieldModifier="public" Grid.Column="0"/>
+            <Grid x:Name="RightPanel" x:FieldModifier="public" Grid.Column="1" Visibility="Collapsed"/>
+        </Grid>
+    </DockPanel>
+</src:AbstractWindow>

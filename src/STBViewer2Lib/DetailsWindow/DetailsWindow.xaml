@@ -1,0 +1,9 @@
+﻿<Window x:Class="STBViewer2Lib.DetailsWindow.DetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="詳細表示" Height="450" Width="800"
+         SizeToContent="WidthAndHeight">
+    <Grid x:Name="MainGrid" Margin="10">
+        <!-- 動的にカラムや要素を追加 -->
+    </Grid>
+</Window>

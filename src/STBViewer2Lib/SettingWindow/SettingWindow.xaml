@@ -1,0 +1,165 @@
+﻿<Window x:Class="STBViewer2Lib.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ビュー設定" Height="800" Width="600"
+        SizeToContent="WidthAndHeight">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- 左側の Projection and Synchronization -->
+        <StackPanel Grid.Column="0" Margin="10">
+            <GroupBox Header="ビュー表示設定" Margin="5">
+                <StackPanel>
+                    <!-- 同期設定 -->
+                    <CheckBox x:Name="SyncCheckBox" Content="左右の画面で同期する" Margin="5"/>
+
+                    <!-- 投影モード設定 -->
+                    <TextBlock Text="透視投影／平行投影:" Margin="5" />
+                    <RadioButton x:Name="PerspectiveRadioButton" Content="透視投影" IsChecked="True" Margin="5" />
+                    <RadioButton x:Name="OrthographicRadioButton" Content="平行投影" Margin="5" />
+
+                    <!-- 階, 平行軸, 放射軸のコンボボックス -->
+                    <StackPanel Orientation="Vertical" Margin="10">
+                        <TextBlock Text="階／通り" />
+                        <ComboBox x:Name="ComboBox" IsEnabled="False" />
+
+                        <!-- TextBoxと数値入力用のTextBoxを並べたもの 1 -->
+                        <StackPanel Orientation="Horizontal" Margin="5,10,5,5">
+                            <TextBlock Text="手前:" VerticalAlignment="Center" />
+                            <TextBox x:Name="FrontBox" Width="50" Margin="5,0,0,0" Text="1000" VerticalAlignment="Center" PreviewTextInput="TextBox_PreviewTextInput" />
+                            <TextBlock Text="mm:" VerticalAlignment="Center" />
+                        </StackPanel>
+
+                        <!-- TextBoxと数値入力用のTextBoxを並べたもの 2 -->
+                        <StackPanel Orientation="Horizontal" Margin="5,10,5,5">
+                            <TextBlock Text="奥行:" VerticalAlignment="Center" />
+                            <TextBox x:Name="DepthBox" Width="50" Margin="5,0,0,0" Text="1000" VerticalAlignment="Center" PreviewTextInput="TextBox_PreviewTextInput" />
+                            <TextBlock Text="mm:" VerticalAlignment="Center" />
+                        </StackPanel>
+
+                        <!-- 反転のチェックボックス -->
+                        <CheckBox x:Name="InvertCheckBox" Content="反転" IsChecked="False" Margin="5,10,5,0" />
+
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="1">
+            <StackPanel Margin="10">
+
+                <!-- 色の設定 -->
+                <GroupBox x:Name="ColorSettingsGroup" Header="Color Settings" Margin="5">
+                    <StackPanel>
+                        <TextBlock Text="Selection Color:" />
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle x:Name="SelectionColorPreview" Width="20" Height="20" Stroke="Black" />
+                            <Button Content="Choose Color" Click="ChooseSelectionColor_Click" />
+                        </StackPanel>
+
+                        <TextBlock Text="StbNode Color:" />
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle x:Name="StbNodeColorPreview" Width="20" Height="20" Stroke="Black" />
+                            <Button Content="Choose Color" Click="ChooseStbNodeColor_Click" />
+                        </StackPanel>
+
+                        <TextBlock Text="StbColumn Color:" />
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle x:Name="StbColumnColorPreview" Width="20" Height="20" Stroke="Black" />
+                            <Button Content="Choose Color" Click="ChooseStbColumnColor_Click" />
+                        </StackPanel>
+
+                        <TextBlock Text="StbPost Color:" />
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle x:Name="StbPostColorPreview" Width="20" Height="20" Stroke="Black" />
+                            <Button Content="Choose Color" Click="ChooseStbPostColor_Click" />
+                        </StackPanel>
+
+                        <TextBlock Text="StbGirder Color:" />
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle x:Name="StbGirderColorPreview" Width="20" Height="20" Stroke="Black" />
+                            <Button Content="Choose Color" Click="ChooseStbGirderColor_Click" />
+                        </StackPanel>
+
+                        <TextBlock Text="StbBeam Color:" />
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle x:Name="StbBeamColorPreview" Width="20" Height="20" Stroke="Black" />
+                            <Button Content="Choose Color" Click="ChooseStbBeamColor_Click" />
+                        </StackPanel>
+
+                        <TextBlock Text="StbBrace Color:" />
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle x:Name="StbBraceColorPreview" Width="20" Height="20" Stroke="Black" />
+                            <Button Content="Choose Color" Click="ChooseStbBraceColor_Click" />
+                        </StackPanel>
+
+                        <TextBlock Text="StbSlab Color:" />
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle x:Name="StbSlabColorPreview" Width="20" Height="20" Stroke="Black" />
+                            <Button Content="Choose Color" Click="ChooseStbSlabColor_Click" />
+                        </StackPanel>
+
+                        <TextBlock Text="StbWall Color:" />
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle x:Name="StbWallColorPreview" Width="20" Height="20" Stroke="Black" />
+                            <Button Content="Choose Color" Click="ChooseStbWallColor_Click" />
+                        </StackPanel>
+
+                        <TextBlock Text="StbParapet Color:" />
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle x:Name="StbParapetColorPreview" Width="20" Height="20" Stroke="Black" />
+                            <Button Content="Choose Color" Click="ChooseStbParapetColor_Click" />
+                        </StackPanel>
+
+                        <TextBlock Text="StbFoundationColumn Color:" />
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle x:Name="StbFoundationColumnColorPreview" Width="20" Height="20" Stroke="Black" />
+                            <Button Content="Choose Color" Click="ChooseStbFoundationColumnColor_Click" />
+                        </StackPanel>
+
+                        <TextBlock Text="StbFooting Color:" />
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle x:Name="StbFootingColorPreview" Width="20" Height="20" Stroke="Black" />
+                            <Button Content="Choose Color" Click="ChooseStbFootingColor_Click" />
+                        </StackPanel>
+
+                        <TextBlock Text="StbStripFooting Color:" />
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle x:Name="StbStripFootingColorPreview" Width="20" Height="20" Stroke="Black" />
+                            <Button Content="Choose Color" Click="ChooseStbStripFootingColor_Click" />
+                        </StackPanel>
+
+                        <TextBlock Text="StbPile Color:" />
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle x:Name="StbPileColorPreview" Width="20" Height="20" Stroke="Black" />
+                            <Button Content="Choose Color" Click="ChooseStbPileColor_Click" />
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- 表示/非表示の設定 -->
+                <GroupBox Header="表示のON/OFF" Margin="5">
+                    <StackPanel>
+                        <CheckBox x:Name="ShowStbNodeCheckBox" Content="StbNode：節点" />
+                        <CheckBox x:Name="ShowStbColumnCheckBox" Content="StbColumn：柱" />
+                        <CheckBox x:Name="ShowStbPostCheckBox" Content="StbPost：間柱" />
+                        <CheckBox x:Name="ShowStbGirderCheckBox" Content="StbGirder：大梁" />
+                        <CheckBox x:Name="ShowStbBeamCheckBox" Content="StbBeam：小梁" />
+                        <CheckBox x:Name="ShowStbBraceCheckBox" Content="StbBrace：ブレース" />
+                        <CheckBox x:Name="ShowStbSlabCheckBox" Content="StbSlab：スラブ" />
+                        <CheckBox x:Name="ShowStbWallCheckBox" Content="StbWall：壁" />
+                        <CheckBox x:Name="ShowStbParapetCheckBox" Content="StbParapet：パラペット" />
+                        <CheckBox x:Name="ShowStbFoundationColumnCheckBox" Content="StbFoundationColumn：基礎柱" />
+                        <CheckBox x:Name="ShowStbFootingCheckBox" Content="StbFooting：基礎" />
+                        <CheckBox x:Name="ShowStbStripFootingCheckBox" Content="StbStripFooting：布基礎" />
+                        <CheckBox x:Name="ShowStbPileCheckBox" Content="StbPile：杭" />
+                    </StackPanel>
+                </GroupBox>
+                <Button Content="Save" Click="SaveButton_Click" Margin="5"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>
