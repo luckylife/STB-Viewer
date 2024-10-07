@@ -1,5 +1,4 @@
 ﻿using OpenTK.Mathematics;
-using STBViewer2_201.MainWindow;
 using STBViewer2_201.ST_BRIDGE201;
 using STBViewer2Lib;
 using STBViewer2Lib.DetailsWindow;
@@ -98,7 +97,7 @@ namespace ST_BRIDGE201
             OutlineModel.Add(new Plane(vertices, holes, shader)); // スケール変換後の座標で初期化
         }
 
-        List<IPropertyTab> GetAdditionalDetails(IST_BRIDGE istBridge)
+        List<IPropertyTab> IModelElement.GetAdditionalDetails(IST_BRIDGE istBridge)
         {
             ST_BRIDGE? stBridge = istBridge as ST_BRIDGE;
             List<IPropertyTab> tabs = [];

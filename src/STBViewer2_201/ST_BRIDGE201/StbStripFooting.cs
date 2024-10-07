@@ -52,7 +52,7 @@ namespace ST_BRIDGE201
             AnalysisNodes.Add(new Sphere((float)end.X * AbstractModelManager.ScaleFactor, (float)end.Y * AbstractModelManager.ScaleFactor, (float)end.Z * AbstractModelManager.ScaleFactor, 0.1f, shader));
         }
 
-        List<IPropertyTab> GetAdditionalDetails(IST_BRIDGE istBridge)
+        List<IPropertyTab> IModelElement.GetAdditionalDetails(IST_BRIDGE istBridge)
         {
             ST_BRIDGE? stBridge = istBridge as ST_BRIDGE;
             List<IPropertyTab> tabs = [];

@@ -1,5 +1,4 @@
 ﻿using OpenTK.Mathematics;
-using STBViewer2_202.MainWindow;
 using STBViewer2_202.ST_BRIDGE202;
 using STBViewer2Lib;
 using STBViewer2Lib.DetailsWindow;
@@ -48,7 +47,7 @@ namespace ST_BRIDGE202
             AnalysisNodes.Add(new Sphere((float)top.X * AbstractModelManager.ScaleFactor, (float)top.Y * AbstractModelManager.ScaleFactor, (float)top.Z * AbstractModelManager.ScaleFactor, 0.1f, shader));
         }
 
-        List<IPropertyTab> GetAdditionalDetails(IST_BRIDGE istBridge)
+        List<IPropertyTab> IModelElement.GetAdditionalDetails(IST_BRIDGE istBridge)
         {
             ST_BRIDGE? stBridge = istBridge as ST_BRIDGE;
             List<IPropertyTab> tabs = [];

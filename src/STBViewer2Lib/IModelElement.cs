@@ -152,7 +152,7 @@ namespace STBViewer2Lib
             return propertyDetails;
         }
 
-        List<IPropertyTab> GetAdditionalDetails(IST_BRIDGE stBridge) { return []; }
+        List<IPropertyTab> GetAdditionalDetails(IST_BRIDGE stBridge);
         void InitilizeModel(IST_BRIDGE istBridge, ShaderLoader shader);
         void SetDetails(IST_BRIDGE istBridge)
         {

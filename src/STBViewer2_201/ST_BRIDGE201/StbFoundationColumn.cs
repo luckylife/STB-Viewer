@@ -64,7 +64,7 @@ namespace ST_BRIDGE201
             return new Tuple<IEnumerable<Vector3>, IEnumerable<IEnumerable<Vector3>>>([first.ElementAt(0), second.ElementAt(1)], new List<List<Vector3>>());
         }
 
-        List<IPropertyTab> GetAdditionalDetails(IST_BRIDGE istBridge)
+        List<IPropertyTab> IModelElement.GetAdditionalDetails(IST_BRIDGE istBridge)
         {
             ST_BRIDGE? stBridge = istBridge as ST_BRIDGE;
             List<IPropertyTab> tabs = [];

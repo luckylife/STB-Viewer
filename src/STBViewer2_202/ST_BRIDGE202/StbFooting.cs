@@ -45,7 +45,7 @@ namespace ST_BRIDGE202
             OutlineModel.Add(new Cube((float)(bottom.X + offset_X) * AbstractModelManager.ScaleFactor, (float)(bottom.Y + offset_Y) * AbstractModelManager.ScaleFactor, (float)(bottom.Z + level_bottom) * AbstractModelManager.ScaleFactor, 0.5f, (float)rotate, shader));
             AnalysisNodes.Add(new Sphere((float)bottom.X * AbstractModelManager.ScaleFactor, (float)bottom.Y * AbstractModelManager.ScaleFactor, (float)bottom.Z * AbstractModelManager.ScaleFactor, 0.1f, shader));
         }
-        List<IPropertyTab> GetAdditionalDetails(IST_BRIDGE istBridge)
+        List<IPropertyTab> IModelElement.GetAdditionalDetails(IST_BRIDGE istBridge)
         {
             ST_BRIDGE? stBridge = istBridge as ST_BRIDGE;
             List<IPropertyTab> tabs = [];
