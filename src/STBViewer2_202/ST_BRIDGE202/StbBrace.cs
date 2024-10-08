@@ -55,25 +55,24 @@ namespace ST_BRIDGE202
             if (kind_structure.ToString() == "S")
             {
                 StbSecBrace_S s = stBridge.StbModel.StbSections.StbSecBrace_S.First(s => s.id == id_section);
-                properties = IModelElement_202.GetPropertyDetail(s);
+                properties = ((IModelElement)(this)).GetPropertyDetail(s, istBridge);
             }
             tabs.Add(new PropertySection("断面", properties));
             if (joint_id_start != null)
             {
                 List<PropertyDetail> jointProperties = [];
                 StbJointBeamShapeH start = stBridge.StbModel.StbJoints.StbJointBeamShapeH.First(j => j.id == joint_id_start);
-                jointProperties.AddRange(IModelElement_202.GetPropertyDetail(start));
+                jointProperties.AddRange(((IModelElement)(this)).GetPropertyDetail(start, istBridge));
                 tabs.Add(new PropertySection("継手始端", jointProperties));
             }
             if (joint_id_end != null)
             {
                 List<PropertyDetail> jointProperties = [];
                 StbJointBeamShapeH end = stBridge.StbModel.StbJoints.StbJointBeamShapeH.First(j => j.id == joint_id_end);
-                jointProperties.AddRange(IModelElement_202.GetPropertyDetail(end));
+                jointProperties.AddRange(((IModelElement)(this)).GetPropertyDetail(end, istBridge));
                 tabs.Add(new PropertySection("継手終端", jointProperties));
             }
             return tabs;
         }
-
     }
 }

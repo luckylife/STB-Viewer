@@ -44,14 +44,14 @@ namespace ST_BRIDGE210
             OutlineModel.Add(new Cube((float)(bottom.X + offset_X) * AbstractModelManager.ScaleFactor, (float)(bottom.Y + offset_Y) * AbstractModelManager.ScaleFactor, (float)(bottom.Z + level_bottom) * AbstractModelManager.ScaleFactor, 0.5f, (float)rotate, shader));
             AnalysisNodes.Add(new Sphere((float)bottom.X * AbstractModelManager.ScaleFactor, (float)bottom.Y * AbstractModelManager.ScaleFactor, (float)bottom.Z * AbstractModelManager.ScaleFactor, 0.1f, shader));
         }
-        List<IPropertyTab> IModelElement.GetAdditionalDetails(IST_BRIDGE istBridge)
+        public List<IPropertyTab> GetAdditionalDetails(IST_BRIDGE istBridge)
         {
             ST_BRIDGE? stBridge = istBridge as ST_BRIDGE;
             List<IPropertyTab> tabs = [];
             List<PropertyDetail> properties = [];
 
             StbSecFoundation_RC rc = stBridge.StbModel.StbSections.StbSecFoundation_RC.First(s => s.id == id_section);
-            properties = IModelElement_210.GetPropertyDetail(rc);
+            properties = ((IModelElement)this).GetPropertyDetail(rc, istBridge);
             tabs.Add(new PropertySection("断面", properties));
             return tabs;
         }

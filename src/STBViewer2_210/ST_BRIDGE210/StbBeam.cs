@@ -55,17 +55,17 @@ namespace ST_BRIDGE210
             if (kind_structure.ToString() == "RC")
             {
                 StbSecBeam_RC rc = stBridge.StbModel.StbSections.StbSecBeam_RC.First(s => s.id == id_section);
-                properties = IModelElement_210.GetPropertyDetail(rc);
+                properties = ((IModelElement)this).GetPropertyDetail(rc, istBridge);
             }
             else if (kind_structure.ToString() == "S")
             {
                 StbSecBeam_S s = stBridge.StbModel.StbSections.StbSecBeam_S.First(s => s.id == id_section);
-                properties = IModelElement_210.GetPropertyDetail(s);
+                properties = ((IModelElement)this).GetPropertyDetail(s, istBridge);
             }
             else if (kind_structure.ToString() == "SRC")
             {
                 StbSecBeam_SRC src = stBridge.StbModel.StbSections.StbSecBeam_SRC.First(s => s.id == id_section);
-                properties = IModelElement_210.GetPropertyDetail(src);
+                properties = ((IModelElement)this).GetPropertyDetail(src, istBridge);
             }
             tabs.Add(new PropertySection("断面", properties));
             /*

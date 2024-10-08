@@ -7,10 +7,69 @@ namespace STBViewer2_210.ST_BRIDGE210
 
     public interface IModelElement_210 : IModelElement
     {
+        List<PropertyDetail> IModelElement.GetStbSecSteelProperties(string shape, IST_BRIDGE istBridge)
+        {
+            ST_BRIDGE? stBridge = istBridge as ST_BRIDGE;
+            if (stBridge?.StbModel?.StbSections?.StbSecSteel?.StbSecRollH?.Any(n => n.name == shape) ?? false)
+            {
+                return GetPropertyDetail(stBridge?.StbModel?.StbSections?.StbSecSteel?.StbSecRollH?.FirstOrDefault(n => n.name == shape), istBridge);
+            }
+            else if (stBridge?.StbModel?.StbSections?.StbSecSteel?.StbSecBuildH?.Any(n => n.name == shape) ?? false)
+            {
+                return GetPropertyDetail(stBridge?.StbModel?.StbSections?.StbSecSteel?.StbSecBuildH?.FirstOrDefault(n => n.name == shape), istBridge);
+            }
+            else if (stBridge?.StbModel?.StbSections?.StbSecSteel?.StbSecRollBOX?.Any(n => n.name == shape) ?? false)
+            {
+                return GetPropertyDetail(stBridge?.StbModel?.StbSections?.StbSecSteel?.StbSecRollBOX?.FirstOrDefault(n => n.name == shape), istBridge);
+            }
+            else if (stBridge?.StbModel?.StbSections?.StbSecSteel?.StbSecBuildBOX?.Any(n => n.name == shape) ?? false)
+            {
+                return GetPropertyDetail(stBridge?.StbModel?.StbSections?.StbSecSteel?.StbSecBuildBOX?.FirstOrDefault(n => n.name == shape), istBridge);
+            }
+            else if (stBridge?.StbModel?.StbSections?.StbSecSteel?.StbSecPipe?.Any(n => n.name == shape) ?? false)
+            {
+                return GetPropertyDetail(stBridge?.StbModel?.StbSections?.StbSecSteel?.StbSecPipe?.FirstOrDefault(n => n.name == shape), istBridge);
+            }
+            else if (stBridge?.StbModel?.StbSections?.StbSecSteel?.StbSecRollT?.Any(n => n.name == shape) ?? false)
+            {
+                return GetPropertyDetail(stBridge?.StbModel?.StbSections?.StbSecSteel?.StbSecRollT?.FirstOrDefault(n => n.name == shape), istBridge);
+            }
+            else if (stBridge?.StbModel?.StbSections?.StbSecSteel?.StbSecRollC?.Any(n => n.name == shape) ?? false)
+            {
+                return GetPropertyDetail(stBridge?.StbModel?.StbSections?.StbSecSteel?.StbSecRollC?.FirstOrDefault(n => n.name == shape), istBridge);
+            }
+            else if (stBridge?.StbModel?.StbSections?.StbSecSteel?.StbSecRollL?.Any(n => n.name == shape) ?? false)
+            {
+                return GetPropertyDetail(stBridge?.StbModel?.StbSections?.StbSecSteel?.StbSecRollL?.FirstOrDefault(n => n.name == shape), istBridge);
+            }
+            else if (stBridge?.StbModel?.StbSections?.StbSecSteel?.StbSecLipC?.Any(n => n.name == shape) ?? false)
+            {
+                return GetPropertyDetail(stBridge?.StbModel?.StbSections?.StbSecSteel?.StbSecLipC?.FirstOrDefault(n => n.name == shape), istBridge);
+            }
+            else if (stBridge?.StbModel?.StbSections?.StbSecSteel?.StbSecFlatBar?.Any(n => n.name == shape) ?? false)
+            {
+                return GetPropertyDetail(stBridge?.StbModel?.StbSections?.StbSecSteel?.StbSecFlatBar?.FirstOrDefault(n => n.name == shape), istBridge);
+            }
+            else if (stBridge?.StbModel?.StbSections?.StbSecSteel?.StbSecRoundBar?.Any(n => n.name == shape) ?? false)
+            {
+                return GetPropertyDetail(stBridge?.StbModel?.StbSections?.StbSecSteel?.StbSecRoundBar?.FirstOrDefault(n => n.name == shape), istBridge);
+            }
+            else if (stBridge?.StbModel?.StbSections?.StbSecSteel?.StbSecSteelProduct?.Any(n => n.name == shape) ?? false)
+            {
+                return GetPropertyDetail(stBridge?.StbModel?.StbSections?.StbSecSteel?.StbSecSteelProduct?.FirstOrDefault(n => n.name == shape), istBridge);
+            }
+            else if (stBridge?.StbModel?.StbSections?.StbSecSteel?.StbSecSteelUndefined?.Any(n => n.name == shape) ?? false)
+            {
+                return GetPropertyDetail(stBridge?.StbModel?.StbSections?.StbSecSteel?.StbSecSteelUndefined?.FirstOrDefault(n => n.name == shape), istBridge);
+            }
+
+            throw new NotImplementedException();
+        }
+
         void IModelElement.StbNodeProperties(System.Reflection.PropertyInfo prop, IST_BRIDGE istBridge, List<PropertyMemberDetail> propertyDetails)
         {
             object value = prop.GetValue(this, null);
-            ST_BRIDGE stBridge = istBridge as ST_BRIDGE;
+            ST_BRIDGE? stBridge = istBridge as ST_BRIDGE;
 
             List<string> children = [];
             if (prop.Name is "id_node" or "id_node_start" or "id_node_end" or "id_node_bottom" or "id_node_top")
@@ -39,7 +98,7 @@ namespace STBViewer2_210.ST_BRIDGE210
             }
 
             object value = prop.GetValue(this, null);
-            ST_BRIDGE stBridge = istBridge as ST_BRIDGE;
+            ST_BRIDGE? stBridge = istBridge as ST_BRIDGE;
 
             List<string> children = [];
             foreach (string item in value.ToString().Split(' '))
@@ -59,7 +118,7 @@ namespace STBViewer2_210.ST_BRIDGE210
             }
 
             object value = prop.GetValue(this, null);
-            ST_BRIDGE stBridge = istBridge as ST_BRIDGE;
+            ST_BRIDGE? stBridge = istBridge as ST_BRIDGE;
 
             List<string> children = [];
             if (value is StbWallOffset[] offsetList)
@@ -94,7 +153,7 @@ namespace STBViewer2_210.ST_BRIDGE210
             }
 
             object value = prop.GetValue(this, null);
-            ST_BRIDGE stBridge = istBridge as ST_BRIDGE;
+            ST_BRIDGE? stBridge = istBridge as ST_BRIDGE;
 
             List<string> children = [];
             if (value is StbSlabOffset[] offsetList)

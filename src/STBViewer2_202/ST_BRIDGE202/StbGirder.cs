@@ -56,35 +56,34 @@ namespace ST_BRIDGE202
             if (kind_structure.ToString() == "RC")
             {
                 StbSecBeam_RC rc = stBridge.StbModel.StbSections.StbSecBeam_RC.First(s => s.id == id_section);
-                properties = IModelElement_202.GetPropertyDetail(rc);
+                properties = ((IModelElement)this).GetPropertyDetail(rc, istBridge);
             }
             else if (kind_structure.ToString() == "S")
             {
                 StbSecBeam_S s = stBridge.StbModel.StbSections.StbSecBeam_S.First(s => s.id == id_section);
-                properties = IModelElement_202.GetPropertyDetail(s);
+                properties = ((IModelElement)this).GetPropertyDetail(s, istBridge);
             }
             else if (kind_structure.ToString() == "SRC")
             {
                 StbSecBeam_SRC src = stBridge.StbModel.StbSections.StbSecBeam_SRC.First(s => s.id == id_section);
-                properties = IModelElement_202.GetPropertyDetail(src);
+                properties = ((IModelElement)this).GetPropertyDetail(src, istBridge);
             }
             tabs.Add(new PropertySection("断面", properties));
             if (joint_id_start != null)
             {
                 List<PropertyDetail> jointProperties = [];
                 StbJointBeamShapeH start = stBridge.StbModel.StbJoints.StbJointBeamShapeH.First(j => j.id == joint_id_start);
-                jointProperties.AddRange(IModelElement_202.GetPropertyDetail(start));
+                jointProperties.AddRange(((IModelElement)this).GetPropertyDetail(start, istBridge));
                 tabs.Add(new PropertySection("継手始端", jointProperties));
             }
             if (joint_id_end != null)
             {
                 List<PropertyDetail> jointProperties = [];
                 StbJointBeamShapeH end = stBridge.StbModel.StbJoints.StbJointBeamShapeH.First(j => j.id == joint_id_end);
-                jointProperties.AddRange(IModelElement_202.GetPropertyDetail(end));
+                jointProperties.AddRange(((IModelElement)this).GetPropertyDetail(end, istBridge));
                 tabs.Add(new PropertySection("継手終端", jointProperties));
             }
             return tabs;
         }
-
     }
 }

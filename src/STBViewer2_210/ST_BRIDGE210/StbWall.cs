@@ -98,7 +98,7 @@ namespace ST_BRIDGE210
             OutlineModel.Add(new Plane(vertices, holes, shader)); // スケール変換後の座標で初期化
         }
 
-        List<IPropertyTab> IModelElement.GetAdditionalDetails(IST_BRIDGE istBridge)
+        public List<IPropertyTab> GetAdditionalDetails(IST_BRIDGE istBridge)
         {
             ST_BRIDGE? stBridge = istBridge as ST_BRIDGE;
             List<IPropertyTab> tabs = [];
@@ -106,7 +106,7 @@ namespace ST_BRIDGE210
             if (kind_structure.ToString() == "RC")
             {
                 StbSecWall_RC rc = stBridge.StbModel.StbSections.StbSecWall_RC.First(s => s.id == id_section);
-                properties = IModelElement_210.GetPropertyDetail(rc);
+                properties = ((IModelElement)this).GetPropertyDetail(rc, istBridge);
             }
             tabs.Add(new PropertySection("断面", properties));
 

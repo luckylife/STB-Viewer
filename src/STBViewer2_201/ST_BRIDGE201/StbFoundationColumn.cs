@@ -1,6 +1,4 @@
 ﻿using OpenTK.Mathematics;
-using STBViewer2_201;
-using STBViewer2_201.MainWindow;
 using STBViewer2_201.ST_BRIDGE201;
 using STBViewer2Lib;
 using STBViewer2Lib.DetailsWindow;
@@ -64,7 +62,7 @@ namespace ST_BRIDGE201
             return new Tuple<IEnumerable<Vector3>, IEnumerable<IEnumerable<Vector3>>>([first.ElementAt(0), second.ElementAt(1)], new List<List<Vector3>>());
         }
 
-        List<IPropertyTab> IModelElement.GetAdditionalDetails(IST_BRIDGE istBridge)
+        public List<IPropertyTab> GetAdditionalDetails(IST_BRIDGE istBridge)
         {
             ST_BRIDGE? stBridge = istBridge as ST_BRIDGE;
             List<IPropertyTab> tabs = [];
@@ -74,13 +72,13 @@ namespace ST_BRIDGE201
                 if (id_section_FD != null)
                 {
                     StbSecColumn_RC rc = stBridge.StbModel.StbSections.StbSecColumn_RC.First(s => s.id == id_section_FD);
-                    properties.AddRange(IModelElement_201.GetPropertyDetail(rc));
+                    properties.AddRange(((IModelElement)this).GetPropertyDetail(rc, istBridge));
                 }
 
                 if (id_section_WR != null)
                 {
                     StbSecColumn_RC rc = stBridge.StbModel.StbSections.StbSecColumn_RC.First(s => s.id == id_section_WR);
-                    properties.AddRange(IModelElement_201.GetPropertyDetail(rc));
+                    properties.AddRange(((IModelElement)this).GetPropertyDetail(rc, istBridge));
                 }
             }
             tabs.Add(new PropertySection("断面", properties));

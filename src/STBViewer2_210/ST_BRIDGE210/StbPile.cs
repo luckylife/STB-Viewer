@@ -57,17 +57,17 @@ namespace ST_BRIDGE210
             if (kind_structure.ToString() == "RC")
             {
                 StbSecPile_RC rc = stBridge.StbModel.StbSections.StbSecPile_RC.First(s => s.id == id_section);
-                properties = IModelElement_210.GetPropertyDetail(rc);
+                properties = ((IModelElement)this).GetPropertyDetail(rc, istBridge);
             }
             else if (kind_structure.ToString() == "S")
             {
                 StbSecPile_S s = stBridge.StbModel.StbSections.StbSecPile_S.First(s => s.id == id_section);
-                properties = IModelElement_210.GetPropertyDetail(s);
+                properties = ((IModelElement)this).GetPropertyDetail(s, istBridge);
             }
             else if (kind_structure.ToString() == "PC")
             {
                 StbSecPilePrecast src = stBridge.StbModel.StbSections.StbSecPilePrecast.First(s => s.id == id_section);
-                properties = IModelElement_210.GetPropertyDetail(src);
+                properties = ((IModelElement)this).GetPropertyDetail(src, istBridge);
             }
             tabs.Add(new PropertySection("断面", properties));
             return tabs;

@@ -57,7 +57,7 @@ namespace ST_BRIDGE210
             if (kind_structure.ToString() == "S")
             {
                 StbSecBrace_S s = stBridge.StbModel.StbSections.StbSecBrace_S.First(s => s.id == id_section);
-                properties = IModelElement_210.GetPropertyDetail(s);
+                properties = ((IModelElement)(this)).GetPropertyDetail(s, istBridge);
             }
             tabs.Add(new PropertySection("断面", properties));
             /*
@@ -78,6 +78,5 @@ namespace ST_BRIDGE210
             */
             return tabs;
         }
-
     }
 }

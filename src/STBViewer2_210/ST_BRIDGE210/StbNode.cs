@@ -41,11 +41,6 @@ namespace ST_BRIDGE210
             OutlineModel.Add(new Sphere((float)X * AbstractModelManager.ScaleFactor, (float)Y * AbstractModelManager.ScaleFactor, (float)Z * AbstractModelManager.ScaleFactor, 0.1f, shader)); // スケール変換後の座標で初期化
         }
 
-        public List<IPropertyTab> GetAdditionalDetails(IST_BRIDGE stBridge)
-        {
-            throw new NotImplementedException();
-        }
-
         List<IPropertyTab> IModelElement.GetAdditionalDetails(IST_BRIDGE istBridge)
         {
             return [];

@@ -1,6 +1,4 @@
 ﻿using OpenTK.Mathematics;
-using STBViewer2_201;
-using STBViewer2_201.MainWindow;
 using STBViewer2_201.ST_BRIDGE201;
 using STBViewer2Lib;
 using STBViewer2Lib.DetailsWindow;
@@ -57,7 +55,7 @@ namespace ST_BRIDGE201
             AnalysisNodes.Add(new Sphere((float)end.X * AbstractModelManager.ScaleFactor, (float)end.Y * AbstractModelManager.ScaleFactor, (float)end.Z * AbstractModelManager.ScaleFactor, 0.1f, shader));
         }
 
-        List<IPropertyTab> IModelElement.GetAdditionalDetails(IST_BRIDGE istBridge)
+        public List<IPropertyTab> GetAdditionalDetails(IST_BRIDGE istBridge)
         {
             ST_BRIDGE? stBridge = istBridge as ST_BRIDGE;
             List<IPropertyTab> tabs = [];
@@ -65,7 +63,7 @@ namespace ST_BRIDGE201
             if (kind_structure.ToString() == "RC")
             {
                 StbSecParapet_RC rc = stBridge.StbModel.StbSections.StbSecParapet_RC.First(s => s.id == id_section);
-                properties.AddRange(IModelElement_201.GetPropertyDetail(rc));
+                properties.AddRange(((IModelElement)this).GetPropertyDetail(rc, istBridge));
             }
             tabs.Add(new PropertySection("断面", properties));
             return tabs;

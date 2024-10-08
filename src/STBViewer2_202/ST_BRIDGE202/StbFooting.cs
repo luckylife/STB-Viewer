@@ -52,7 +52,7 @@ namespace ST_BRIDGE202
             List<PropertyDetail> properties = [];
 
             StbSecFoundation_RC rc = stBridge.StbModel.StbSections.StbSecFoundation_RC.First(s => s.id == id_section);
-            properties = IModelElement_202.GetPropertyDetail(rc);
+            properties = ((IModelElement)(this)).GetPropertyDetail(rc, istBridge);
             tabs.Add(new PropertySection("断面", properties));
             return tabs;
         }

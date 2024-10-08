@@ -1,5 +1,4 @@
 ﻿using OpenTK.Mathematics;
-using STBViewer2_202.MainWindow;
 using STBViewer2_202.ST_BRIDGE202;
 using STBViewer2Lib;
 using STBViewer2Lib.DetailsWindow;
@@ -56,22 +55,22 @@ namespace ST_BRIDGE202
             if (kind_structure.ToString() == "RC")
             {
                 StbSecColumn_RC rc = stBridge.StbModel.StbSections.StbSecColumn_RC.First(s => s.id == id_section);
-                properties = IModelElement_202.GetPropertyDetail(rc);
+                properties = ((IModelElement)this).GetPropertyDetail(rc, istBridge);
             }
             else if (kind_structure.ToString() == "S")
             {
                 StbSecColumn_S s = stBridge.StbModel.StbSections.StbSecColumn_S.First(s => s.id == id_section);
-                properties = IModelElement_202.GetPropertyDetail(s);
+                properties = ((IModelElement)this).GetPropertyDetail(s, istBridge);
             }
             else if (kind_structure.ToString() == "SRC")
             {
                 StbSecColumn_SRC src = stBridge.StbModel.StbSections.StbSecColumn_SRC.First(s => s.id == id_section);
-                properties = IModelElement_202.GetPropertyDetail(src);
+                properties = ((IModelElement)this).GetPropertyDetail(src, istBridge);
             }
             else if (kind_structure.ToString() == "CFT")
             {
                 StbSecColumn_CFT cft = stBridge.StbModel.StbSections.StbSecColumn_CFT.First(s => s.id == id_section);
-                properties = IModelElement_202.GetPropertyDetail(cft);
+                properties = ((IModelElement)this).GetPropertyDetail(cft, istBridge);
 
             }
             tabs.Add(new PropertySection("断面", properties));
@@ -84,19 +83,19 @@ namespace ST_BRIDGE202
                     StbJointColumnShapeH? shapeH = stBridge.StbModel.StbJoints?.StbJointColumnShapeH.FirstOrDefault(j => j.id == joint_id_bottom);
                     if (shapeH != null)
                     {
-                        jointProperties.AddRange(IModelElement_202.GetPropertyDetail(shapeH));
+                        jointProperties.AddRange(((IModelElement)this).GetPropertyDetail(shapeH, istBridge));
                     }
 
                     StbJointColumnShapeT? shapeT = stBridge.StbModel.StbJoints?.StbJointColumnShapeT.FirstOrDefault(j => j.id == joint_id_bottom);
                     if (shapeT != null)
                     {
-                        jointProperties.AddRange(IModelElement_202.GetPropertyDetail(shapeT));
+                        jointProperties.AddRange(((IModelElement)this).GetPropertyDetail(shapeT, istBridge));
                     }
 
                     StbJointColumnShapeCross? crossH = stBridge.StbModel.StbJoints?.StbJointColumnShapeCross.FirstOrDefault(j => j.id == joint_id_bottom);
                     if (crossH != null)
                     {
-                        jointProperties.AddRange(IModelElement_202.GetPropertyDetail(crossH));
+                        jointProperties.AddRange(((IModelElement)this).GetPropertyDetail(crossH, istBridge));
                     }
                 }
                 if (joint_id_top != null)
@@ -104,19 +103,19 @@ namespace ST_BRIDGE202
                     StbJointColumnShapeH? shapeH = stBridge.StbModel.StbJoints?.StbJointColumnShapeH.FirstOrDefault(j => j.id == joint_id_top);
                     if (shapeH != null)
                     {
-                        jointProperties.AddRange(IModelElement_202.GetPropertyDetail(shapeH));
+                        jointProperties.AddRange(((IModelElement)this).GetPropertyDetail(shapeH, istBridge));
                     }
 
                     StbJointColumnShapeT? shapeT = stBridge.StbModel.StbJoints?.StbJointColumnShapeT.FirstOrDefault(j => j.id == joint_id_top);
                     if (shapeT != null)
                     {
-                        jointProperties.AddRange(IModelElement_202.GetPropertyDetail(shapeT));
+                        jointProperties.AddRange(((IModelElement)this).GetPropertyDetail(shapeT, istBridge));
                     }
 
                     StbJointColumnShapeCross? crossH = stBridge.StbModel.StbJoints?.StbJointColumnShapeCross.FirstOrDefault(j => j.id == joint_id_top);
                     if (crossH != null)
                     {
-                        jointProperties.AddRange(IModelElement_202.GetPropertyDetail(crossH));
+                        jointProperties.AddRange(((IModelElement)this).GetPropertyDetail(crossH, istBridge));
                     }
                 }
                 tabs.Add(new PropertySection("継手", jointProperties));
@@ -124,6 +123,5 @@ namespace ST_BRIDGE202
 
             return tabs;
         }
-
     }
 }

@@ -79,7 +79,14 @@ namespace STBViewer2Lib
             return Tabs;
         }
 
-        static List<PropertyDetail> GetPropertyDetail(object obj)
+        private bool IsSteelShape(string propertyName)
+        {
+            return propertyName is "shape" or "shape_H" or "shape_T" or "shape_X" or "shape_Y";
+        }
+
+        List<PropertyDetail> GetStbSecSteelProperties(string shape, IST_BRIDGE istBridge);
+
+        List<PropertyDetail> GetPropertyDetail(object obj, IST_BRIDGE istBridge)
         {
             List<PropertyDetail> propertyDetails = [];
             try
@@ -107,7 +114,15 @@ namespace STBViewer2Lib
                                 continue; // FieldSpecifiedがfalseの場合はスキップ
                             }
                         }
-                        propertyDetails.Add(new PropertyDetail(prop.Name, value.ToString()));
+                        if (!IsSteelShape(prop.Name))
+                        {
+                            propertyDetails.Add(new PropertyDetail(prop.Name, value.ToString()));
+                        }
+                        else
+                        {
+                            List<PropertyDetail> children = GetStbSecSteelProperties(value.ToString(), istBridge);
+                            propertyDetails.Add(new PropertyDetail(prop.Name, value.ToString(), children));
+                        }
                     }
                     else if (prop.PropertyType.IsPrimitive || prop.PropertyType == typeof(string))
                     {
@@ -125,12 +140,12 @@ namespace STBViewer2Lib
                         {
                             foreach (object? item in enumerable)
                             {
-                                children = GetPropertyDetail(item);
+                                children = GetPropertyDetail(item, istBridge);
                             }
                         }
                         else
                         {
-                            children = GetPropertyDetail(value);
+                            children = GetPropertyDetail(value, istBridge);
                         }
 
                         if (children.Count > 0)

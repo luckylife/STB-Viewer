@@ -50,7 +50,7 @@ namespace ST_BRIDGE202
             AnalysisNodes.Add(new Sphere((float)top.X * AbstractModelManager.ScaleFactor, (float)top.Y * AbstractModelManager.ScaleFactor, (float)top.Z * AbstractModelManager.ScaleFactor, 0.1f, shader));
         }
 
-        List<IPropertyTab> IModelElement.GetAdditionalDetails(IST_BRIDGE istBridge)
+        public List<IPropertyTab> GetAdditionalDetails(IST_BRIDGE istBridge)
         {
             ST_BRIDGE? stBridge = istBridge as ST_BRIDGE;
             List<IPropertyTab> tabs = [];
@@ -58,17 +58,17 @@ namespace ST_BRIDGE202
             if (kind_structure.ToString() == "RC")
             {
                 StbSecPile_RC rc = stBridge.StbModel.StbSections.StbSecPile_RC.First(s => s.id == id_section);
-                properties = IModelElement_202.GetPropertyDetail(rc);
+                properties = ((IModelElement)this).GetPropertyDetail(rc, istBridge);
             }
             else if (kind_structure.ToString() == "S")
             {
                 StbSecPile_S s = stBridge.StbModel.StbSections.StbSecPile_S.First(s => s.id == id_section);
-                properties = IModelElement_202.GetPropertyDetail(s);
+                properties = ((IModelElement)this).GetPropertyDetail(s, istBridge);
             }
             else if (kind_structure.ToString() == "PC")
             {
                 StbSecPileProduct src = stBridge.StbModel.StbSections.StbSecPileProduct.First(s => s.id == id_section);
-                properties = IModelElement_202.GetPropertyDetail(src);
+                properties = ((IModelElement)this).GetPropertyDetail(src, istBridge);
             }
             tabs.Add(new PropertySection("断面", properties));
             return tabs;

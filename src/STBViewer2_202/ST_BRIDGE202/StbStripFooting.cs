@@ -1,5 +1,4 @@
 ﻿using OpenTK.Mathematics;
-using STBViewer2_202.MainWindow;
 using STBViewer2_202.ST_BRIDGE202;
 using STBViewer2Lib;
 using STBViewer2Lib.DetailsWindow;
@@ -59,9 +58,14 @@ namespace ST_BRIDGE202
             List<PropertyDetail> properties = [];
 
             StbSecFoundation_RC rc = stBridge.StbModel.StbSections.StbSecFoundation_RC.First(s => s.id == id_section);
-            properties = IModelElement_202.GetPropertyDetail(rc);
+            properties = ((IModelElement)this).GetPropertyDetail(rc, istBridge);
             tabs.Add(new PropertySection("断面", properties));
             return tabs;
+        }
+
+        public List<PropertyDetail> GetStbSecSteelProperties(string shape, IST_BRIDGE istBridge)
+        {
+            throw new NotImplementedException();
         }
     }
 }

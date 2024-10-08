@@ -71,13 +71,13 @@ namespace ST_BRIDGE210
                 if (id_section_FD != null)
                 {
                     StbSecColumn_RC rc = stBridge.StbModel.StbSections.StbSecColumn_RC.First(s => s.id == id_section_FD);
-                    properties.AddRange(IModelElement.GetPropertyDetail(rc));
+                    properties.AddRange(((IModelElement)(this)).GetPropertyDetail(rc, istBridge));
                 }
 
                 if (id_section_WR != null)
                 {
                     StbSecColumn_RC rc = stBridge.StbModel.StbSections.StbSecColumn_RC.First(s => s.id == id_section_WR);
-                    properties.AddRange(IModelElement.GetPropertyDetail(rc));
+                    properties.AddRange(((IModelElement)(this)).GetPropertyDetail(rc, istBridge));
                 }
             }
             tabs.Add(new PropertySection("断面", properties));

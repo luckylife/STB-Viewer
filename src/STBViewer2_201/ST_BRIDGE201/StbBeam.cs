@@ -47,7 +47,7 @@ namespace ST_BRIDGE201
             AnalysisNodes.Add(new Sphere((float)top.X * AbstractModelManager.ScaleFactor, (float)top.Y * AbstractModelManager.ScaleFactor, (float)top.Z * AbstractModelManager.ScaleFactor, 0.1f, shader));
         }
 
-        List<IPropertyTab> IModelElement.GetAdditionalDetails(IST_BRIDGE istBridge)
+        public List<IPropertyTab> GetAdditionalDetails(IST_BRIDGE istBridge)
         {
             ST_BRIDGE? stBridge = istBridge as ST_BRIDGE;
             List<IPropertyTab> tabs = [];
@@ -55,17 +55,17 @@ namespace ST_BRIDGE201
             if (kind_structure.ToString() == "RC")
             {
                 StbSecBeam_RC rc = stBridge.StbModel.StbSections.StbSecBeam_RC.First(s => s.id == id_section);
-                properties = IModelElement_201.GetPropertyDetail(rc);
+                properties = ((IModelElement)this).GetPropertyDetail(rc, istBridge);
             }
             else if (kind_structure.ToString() == "S")
             {
                 StbSecBeam_S s = stBridge.StbModel.StbSections.StbSecBeam_S.First(s => s.id == id_section);
-                properties = IModelElement_201.GetPropertyDetail(s);
+                properties = ((IModelElement)this).GetPropertyDetail(s, istBridge);
             }
             else if (kind_structure.ToString() == "SRC")
             {
                 StbSecBeam_SRC src = stBridge.StbModel.StbSections.StbSecBeam_SRC.First(s => s.id == id_section);
-                properties = IModelElement_201.GetPropertyDetail(src);
+                properties = ((IModelElement)this).GetPropertyDetail(src, istBridge);
             }
             tabs.Add(new PropertySection("断面", properties));
 
@@ -73,18 +73,17 @@ namespace ST_BRIDGE201
             {
                 List<PropertyDetail> jointProperties = [];
                 StbJointBeamShapeH start = stBridge.StbModel.StbJoints.StbJointBeamShapeH.First(j => j.id == joint_id_start);
-                jointProperties.AddRange(IModelElement_201.GetPropertyDetail(start));
+                jointProperties.AddRange(((IModelElement)this).GetPropertyDetail(start, istBridge));
                 tabs.Add(new PropertySection("継手始端", jointProperties));
             }
             if (joint_id_end != null)
             {
                 List<PropertyDetail> jointProperties = [];
                 StbJointBeamShapeH end = stBridge.StbModel.StbJoints.StbJointBeamShapeH.First(j => j.id == joint_id_end);
-                jointProperties.AddRange(IModelElement_201.GetPropertyDetail(end));
+                jointProperties.AddRange(((IModelElement)this).GetPropertyDetail(end, istBridge));
                 tabs.Add(new PropertySection("継手終端", jointProperties));
             }
             return tabs;
         }
-
     }
 }

@@ -106,17 +106,17 @@ namespace ST_BRIDGE202
             if (kind_structure.ToString() == "RC")
             {
                 StbSecSlab_RC rc = stBridge.StbModel.StbSections.StbSecSlab_RC.First(s => s.id == id_section);
-                properties = IModelElement_202.GetPropertyDetail(rc);
+                properties = ((IModelElement)(this)).GetPropertyDetail(rc, istBridge);
             }
             else if (kind_structure.ToString() == "DECK")
             {
                 StbSecSlabDeck s = stBridge.StbModel.StbSections.StbSecSlabDeck.First(s => s.id == id_section);
-                properties = IModelElement_202.GetPropertyDetail(s);
+                properties = ((IModelElement)(this)).GetPropertyDetail(s, istBridge);
             }
             else if (kind_structure.ToString() == "PRECAST")
             {
                 StbSecParapet_RC src = stBridge.StbModel.StbSections.StbSecParapet_RC.First(s => s.id == id_section);
-                properties = IModelElement_202.GetPropertyDetail(src);
+                properties = ((IModelElement)(this)).GetPropertyDetail(src, istBridge);
             }
             tabs.Add(new PropertySection("断面", properties));
 
@@ -129,14 +129,14 @@ namespace ST_BRIDGE202
                     StbOpen open = stBridge.StbModel.StbMembers.StbOpens.First(o => o.id == id.id);
                     PropertyDetail property = new("StbOpen", index.ToString())
                     {
-                        Children = IModelElement_202.GetPropertyDetail(open)
+                        Children = ((IModelElement)(this)).GetPropertyDetail(open, istBridge)
                     };
                     for (int i = 0; i < property.Children.Count(); i++)
                     {
                         if (property.Children.ElementAt(i).PropertyName == "id_section")
                         {
                             StbSecOpen_RC secOpen = stBridge.StbModel.StbSections.StbSecOpen_RC.First(s => s.id == open.id_section);
-                            property.Children.ElementAt(i).Children = IModelElement_202.GetPropertyDetail(secOpen);
+                            property.Children.ElementAt(i).Children = ((IModelElement)(this)).GetPropertyDetail(secOpen, istBridge);
                         }
                     }
 

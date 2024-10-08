@@ -55,22 +55,22 @@ namespace ST_BRIDGE210
             if (kind_structure.ToString() == "RC")
             {
                 StbSecColumn_RC rc = stBridge.StbModel.StbSections.StbSecColumn_RC.First(s => s.id == id_section);
-                properties = IModelElement_210.GetPropertyDetail(rc);
+                properties = ((IModelElement)(this)).GetPropertyDetail(rc, istBridge);
             }
             else if (kind_structure.ToString() == "S")
             {
                 StbSecColumn_S s = stBridge.StbModel.StbSections.StbSecColumn_S.First(s => s.id == id_section);
-                properties = IModelElement_210.GetPropertyDetail(s);
+                properties = ((IModelElement)(this)).GetPropertyDetail(s, istBridge);
             }
             else if (kind_structure.ToString() == "SRC")
             {
                 StbSecColumn_SRC src = stBridge.StbModel.StbSections.StbSecColumn_SRC.First(s => s.id == id_section);
-                properties = IModelElement_210.GetPropertyDetail(src);
+                properties = ((IModelElement)(this)).GetPropertyDetail(src, istBridge);
             }
             else if (kind_structure.ToString() == "CFT")
             {
                 StbSecColumn_CFT cft = stBridge.StbModel.StbSections.StbSecColumn_CFT.First(s => s.id == id_section);
-                properties = IModelElement_210.GetPropertyDetail(cft);
+                properties = ((IModelElement)(this)).GetPropertyDetail(cft, istBridge);
 
             }
             tabs.Add(new PropertySection("断面", properties));
@@ -124,6 +124,5 @@ namespace ST_BRIDGE210
             */
             return tabs;
         }
-
     }
 }

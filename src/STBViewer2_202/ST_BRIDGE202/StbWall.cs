@@ -105,7 +105,7 @@ namespace ST_BRIDGE202
             if (kind_structure.ToString() == "RC")
             {
                 StbSecWall_RC rc = stBridge.StbModel.StbSections.StbSecWall_RC.First(s => s.id == id_section);
-                properties = IModelElement_202.GetPropertyDetail(rc);
+                properties = ((IModelElement)this).GetPropertyDetail(rc, istBridge);
             }
             tabs.Add(new PropertySection("断面", properties));
 
@@ -118,14 +118,14 @@ namespace ST_BRIDGE202
                     StbOpen open = stBridge.StbModel.StbMembers.StbOpens.First(o => o.id == id.id);
                     PropertyDetail property = new("StbOpen", index.ToString())
                     {
-                        Children = IModelElement_202.GetPropertyDetail(open)
+                        Children = ((IModelElement)this).GetPropertyDetail(open, istBridge)
                     };
                     for (int i = 0; i < property.Children.Count(); i++)
                     {
                         if (property.Children.ElementAt(i).PropertyName == "id_section")
                         {
                             StbSecOpen_RC secOpen = stBridge.StbModel.StbSections.StbSecOpen_RC.First(s => s.id == open.id_section);
-                            property.Children.ElementAt(i).Children = IModelElement_202.GetPropertyDetail(secOpen);
+                            property.Children.ElementAt(i).Children = ((IModelElement)this).GetPropertyDetail(secOpen, istBridge);
                         }
                     }
 
