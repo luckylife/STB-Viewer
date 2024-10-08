@@ -139,6 +139,18 @@ namespace STBViewer2Lib.MainWindow
                     return;
                 }
 
+                Encoding encode;
+                if (encoding.ToLower() != "utf-8")
+                {
+                    // .NETの標準以外
+                    Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+                    encode = Encoding.GetEncoding(encoding);
+                }
+                else
+                {
+                    encode = Encoding.UTF8;
+                }
+
                 _leftTreeView3DSet.ClearModel(); // 左側をクリア
 
                 // エラーメッセージリストを初期化
@@ -147,7 +159,6 @@ namespace STBViewer2Lib.MainWindow
                 string filePath = openFileDialog.FileName;
                 try
                 {
-                    Encoding encode = Encoding.GetEncoding(encoding);
                     IST_BRIDGE stbData = LoadSTBridgeFile(filePath, encode); // ST-Bridgeファイルを読み込む処理
                     try
                     {
@@ -207,6 +218,7 @@ namespace STBViewer2Lib.MainWindow
                     if (xmlReader.NodeType == XmlNodeType.XmlDeclaration)
                     {
                         version = xmlReader.GetAttribute("version");
+                        encoding = xmlReader.GetAttribute("encoding"); // encodingの値を取得
                         continue;
                     }
 
